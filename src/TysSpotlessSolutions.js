@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Snowflake, Phone, MapPin, Clock, CheckCircle, Mail, Menu, X } from 'lucide-react';
 
 export default function TysSpotlessSolutions() {
@@ -347,6 +347,12 @@ export default function TysSpotlessSolutions() {
     </div>
   );
 
+  const renderPage = useMemo(() => {
+    if (currentPage === 'home') return <HomePage />;
+    if (currentPage === 'services') return <ServicesPage />;
+    if (currentPage === 'contact') return <ContactPage />;
+  }, [currentPage, formData, submitted]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -429,9 +435,7 @@ export default function TysSpotlessSolutions() {
 
       {/* Page Content */}
       <main>
-        {currentPage === 'home' && <HomePage />}
-        {currentPage === 'services' && <ServicesPage />}
-        {currentPage === 'contact' && <ContactPage />}
+        {renderPage}
       </main>
 
       {/* Footer */}
