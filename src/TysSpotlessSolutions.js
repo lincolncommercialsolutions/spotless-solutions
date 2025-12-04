@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Snowflake, Phone, MapPin, Clock, CheckCircle, Mail, Menu, X } from 'lucide-react';
 
 export default function TysSpotlessSolutions() {
@@ -40,7 +40,7 @@ export default function TysSpotlessSolutions() {
     window.scrollTo(0, 0);
   };
 
-  const HomePage = () => (
+  const renderHomePage = () => (
     <div>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-16 md:py-24 px-4">
@@ -144,7 +144,7 @@ export default function TysSpotlessSolutions() {
     </div>
   );
 
-  const ServicesPage = () => (
+  const renderServicesPage = () => (
     <div className="py-12 md:py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-gray-800 px-4">
@@ -214,7 +214,7 @@ export default function TysSpotlessSolutions() {
     </div>
   );
 
-  const ContactPage = () => (
+  const renderContactPage = () => (
     <div className="py-12 md:py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-5xl font-bold text-center mb-4 text-gray-800">
@@ -348,14 +348,6 @@ export default function TysSpotlessSolutions() {
     </div>
   );
 
-  // Memoize the page components to prevent recreation on state updates
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const renderHomePage = useMemo(() => <HomePage />, []);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const renderServicesPage = useMemo(() => <ServicesPage />, []);
-  // Contact page needs formData and submitted to update
-  const renderContactPage = useMemo(() => <ContactPage />, [formData, submitted]);
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -438,9 +430,9 @@ export default function TysSpotlessSolutions() {
 
       {/* Page Content */}
       <main>
-        {currentPage === 'home' && renderHomePage}
-        {currentPage === 'services' && renderServicesPage}
-        {currentPage === 'contact' && renderContactPage}
+        {currentPage === 'home' && renderHomePage()}
+        {currentPage === 'services' && renderServicesPage()}
+        {currentPage === 'contact' && renderContactPage()}
       </main>
 
       {/* Footer */}
