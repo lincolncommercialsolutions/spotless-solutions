@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from 'react';
+import React, { useState } from 'react';
 import { Snowflake, Phone, MapPin, Clock, CheckCircle, Mail, Menu, X } from 'lucide-react';
 
 export default function TysSpotlessSolutions() {
@@ -13,32 +13,32 @@ export default function TysSpotlessSolutions() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = useCallback((e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  }, []);
+  };
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     const subject = encodeURIComponent('Snow Removal Service Inquiry');
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nAddress: ${formData.address}\n\nMessage:\n${formData.message}`
     );
-    window.location.href = `mailto:contact@tysspotless.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:tyloaks11@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
     setTimeout(() => {
       setFormData({ name: '', email: '', phone: '', address: '', message: '' });
       setSubmitted(false);
     }, 3000);
-  }, [formData]);
+  };
 
-  const navigateTo = useCallback((page) => {
+  const navigateTo = (page) => {
     setCurrentPage(page);
     setMobileMenuOpen(false);
     window.scrollTo(0, 0);
-  }, []);
+  };
 
   const HomePage = () => (
     <div>
@@ -234,14 +234,14 @@ export default function TysSpotlessSolutions() {
                   <Phone className="text-blue-600 flex-shrink-0 mt-1" size={22} />
                   <div>
                     <h3 className="font-semibold text-gray-800">Phone</h3>
-                    <p className="text-sm md:text-base text-gray-600">(269) 555-SNOW</p>
+                    <p className="text-sm md:text-base text-gray-600">(269) 207-7975</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Mail className="text-blue-600 flex-shrink-0 mt-1" size={22} />
                   <div>
                     <h3 className="font-semibold text-gray-800">Email</h3>
-                    <p className="text-sm md:text-base text-gray-600">contact@tysspotless.com</p>
+                    <p className="text-sm md:text-base text-gray-600">tyloaks11@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
