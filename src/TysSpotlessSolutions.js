@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Snowflake, Phone, MapPin, Clock, CheckCircle, Mail, Menu, X } from 'lucide-react';
 
 export default function TysSpotlessSolutions() {
@@ -13,14 +13,15 @@ export default function TysSpotlessSolutions() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleInputChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const subject = encodeURIComponent('Snow Removal Service Inquiry');
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nAddress: ${formData.address}\n\nMessage:\n${formData.message}`
@@ -31,13 +32,13 @@ export default function TysSpotlessSolutions() {
       setFormData({ name: '', email: '', phone: '', address: '', message: '' });
       setSubmitted(false);
     }, 3000);
-  };
+  }, [formData]);
 
-  const navigateTo = (page) => {
+  const navigateTo = useCallback((page) => {
     setCurrentPage(page);
     setMobileMenuOpen(false);
     window.scrollTo(0, 0);
-  };
+  }, []);
 
   const HomePage = () => (
     <div>
@@ -347,12 +348,6 @@ export default function TysSpotlessSolutions() {
     </div>
   );
 
-  const renderPage = useMemo(() => {
-    if (currentPage === 'home') return <HomePage />;
-    if (currentPage === 'services') return <ServicesPage />;
-    if (currentPage === 'contact') return <ContactPage />;
-  }, [currentPage, formData, submitted]);
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -435,7 +430,9 @@ export default function TysSpotlessSolutions() {
 
       {/* Page Content */}
       <main>
-        {renderPage}
+        {currentPage === 'home' && <HomePage />}
+        {currentPage === 'services' && <ServicesPage />}
+        {currentPage === 'contact' && <ContactPage />}
       </main>
 
       {/* Footer */}
