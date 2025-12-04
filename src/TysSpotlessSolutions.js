@@ -214,7 +214,7 @@ export default function TysSpotlessSolutions() {
     </div>
   );
 
-  const ContactPage = memo(() => (
+  const ContactPage = () => (
     <div className="py-12 md:py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-5xl font-bold text-center mb-4 text-gray-800">
@@ -346,7 +346,7 @@ export default function TysSpotlessSolutions() {
         </div>
       </div>
     </div>
-  ));
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
