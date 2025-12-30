@@ -34,13 +34,17 @@ spotless-solutions/
 ├── public/
 │   └── index.html          # HTML template with meta tags and site description
 ├── src/
-│   ├── App.tsx             # Main application component
-│   ├── TysSpotlessSolutions.tsx  # Core business logic and UI (399 lines)
-│   ├── index.js            # Application entry point
+│   ├── App.tsx             # Main application component (TypeScript)
+│   ├── App.js              # Main application component (JavaScript)
+│   ├── TysSpotlessSolutions.tsx  # Core business logic and UI (TypeScript, 398 lines)
+│   ├── TysSpotlessSolutions.js   # Core business logic and UI (JavaScript, 451 lines)
+│   ├── index.js            # Application entry point (React 18 root)
 │   └── index.css           # Global styles and Tailwind directives
 ├── package.json            # Project dependencies and scripts
 └── tailwind.config.js      # Tailwind CSS configuration
 ```
+
+**Note**: The project includes both TypeScript (.tsx) and JavaScript (.js) versions of the main components to support flexible development workflows.
 
 ## Quantifiable Impact
 
